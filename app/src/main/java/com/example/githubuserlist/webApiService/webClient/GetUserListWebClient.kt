@@ -2,6 +2,7 @@ package com.example.githubuserlist.webApiService.webClient
 
 import android.util.Log
 import com.example.githubuserlist.model.User
+import com.example.githubuserlist.viewModel.DataViewModel
 import com.example.githubuserlist.webApiService.ApiService
 import com.example.githubuserlist.webApiService.request.GetUserLsitRequest
 import com.example.githubuserlist.webApiService.response.GetUserListResponse
@@ -11,9 +12,9 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 
-class GetUserListWebClient(val request: GetUserLsitRequest, val handleKey: String? = null){
+class GetUserListWebClient(val request: GetUserLsitRequest, val handleKey: String? = null, val viewModel: DataViewModel){
 
-    fun request(): ArrayList<User> {
+    fun request(){
         val apiService = ApiService.Factory.create()
         var call = apiService.getUserList(request.start_index)
         val user_list = ArrayList<User>()
@@ -38,6 +39,7 @@ class GetUserListWebClient(val request: GetUserLsitRequest, val handleKey: Strin
 
                     Log.e("test api2", "${user_list.size}")
                     val response = GetUserListResponse(user_list)
+                    viewModel.setUp(user_list)
                 }
             }
 
@@ -45,6 +47,5 @@ class GetUserListWebClient(val request: GetUserLsitRequest, val handleKey: Strin
                 Log.e("GetUserListWebClient", "GetUserListWebClient requestHandle onFailure")
             }
         })
-        return user_list
     }
 }
