@@ -33,7 +33,8 @@ class GetUserListWebClient(val request: GetUserLsitRequest, val handleKey: Strin
                         val user = User(json.getInt("id"),
                                         json.getString("avatar_url"),
                                         json.getString("login"),
-                                        json.getBoolean("site_admin"),"","","","")
+                                        json.getBoolean("site_admin"),
+                                        json.getString("type"),"","","","")
                         user_list.add(user)
                     }
 

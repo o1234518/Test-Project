@@ -13,9 +13,10 @@ import com.example.githubuserlist.model.User
 
 
 class DataItemViewModel(dataModel: User) : BaseObservable() {
-    private val dataModel: User
+    val dataModel: User
     val avatare_url = dataModel.avatare_url
     val login_id = dataModel.login_id
+    val admin = dataModel.site_admin
     fun setUp() {
         // perform set up tasks, such as adding listeners
         Log.e("item", "setUp")
