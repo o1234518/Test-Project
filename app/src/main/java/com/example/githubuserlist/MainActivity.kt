@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.githubuserlist.databinding.ActivityMainBinding
 import com.example.githubuserlist.databinding.AppDataBindingComponent
 import com.example.githubuserlist.databinding.UserListItemBinding
+import com.example.githubuserlist.model.User
 import com.example.githubuserlist.viewModel.DataItemViewModel
 import com.example.githubuserlist.viewModel.DataViewModel
 import com.example.githubuserlist.webApiService.request.GetUserLsitRequest
@@ -33,12 +34,16 @@ class MainActivity : AppCompatActivity() {
         initRecycleView(view)
 
         button.setOnClickListener(View.OnClickListener {
-                    val getUserListClient = GetUserListWebClient(
-                        GetUserLsitRequest(0),
-                        null,
-                        dataViewModel
-                    )
-            getUserListClient.request()
+            if (!dataViewModel.getDownloadStatus()) {
+                var list = dataViewModel.getData()
+                var user = list[list.size-1]
+                val getUserListClient = GetUserListWebClient(
+                    GetUserLsitRequest(user.id),
+                    null,
+                    dataViewModel
+                )
+                getUserListClient.request()
+            }
         })
 
         val getUserListClient = GetUserListWebClient(

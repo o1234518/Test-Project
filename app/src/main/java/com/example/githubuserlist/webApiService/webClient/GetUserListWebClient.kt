@@ -5,7 +5,6 @@ import com.example.githubuserlist.model.User
 import com.example.githubuserlist.viewModel.DataViewModel
 import com.example.githubuserlist.webApiService.ApiService
 import com.example.githubuserlist.webApiService.request.GetUserLsitRequest
-import com.example.githubuserlist.webApiService.response.GetUserListResponse
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
@@ -31,7 +30,8 @@ class GetUserListWebClient(val request: GetUserLsitRequest, val handleKey: Strin
 
                     for (i in 0..success_body.length().minus(1)) {
                         var json = JSONObject(success_body.get(i).toString())
-                        val user = User(json.getString("avatar_url"),
+                        val user = User(json.getInt("id"),
+                                        json.getString("avatar_url"),
                                         json.getString("login"),
                                         json.getBoolean("site_admin"),"","","","")
                         user_list.add(user)

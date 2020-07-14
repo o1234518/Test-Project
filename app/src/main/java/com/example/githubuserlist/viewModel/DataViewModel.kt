@@ -12,6 +12,7 @@ class DataViewModel : BaseObservable() {
     @get:Bindable
     val adapter: DataAdapter
     private val data: MutableList<User>
+    private val loading: Boolean = false
     fun setUp(list: List<User>) {
         // perform set up tasks, such as adding listeners, data population, etc.
         for (i in 0 .. (list.size-1)) {
@@ -27,6 +28,10 @@ class DataViewModel : BaseObservable() {
 
     fun tearDown() {
         // perform tear down tasks, such as removing listeners
+    }
+
+    fun getDownloadStatus(): Boolean {
+        return loading
     }
 
     @Bindable
