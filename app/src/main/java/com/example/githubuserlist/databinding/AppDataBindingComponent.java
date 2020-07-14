@@ -21,6 +21,7 @@
  */
 package com.example.githubuserlist.databinding;
 
+
 import androidx.databinding.DataBindingComponent;
 
 public class AppDataBindingComponent implements DataBindingComponent {

@@ -14,8 +14,14 @@ class DataViewModel : BaseObservable() {
     private val data: MutableList<User>
     fun setUp(list: List<User>) {
         // perform set up tasks, such as adding listeners, data population, etc.
-        data.addAll(list)
-        Log.e("testViewModel1", "${list.size} , ${data.size}")
+        for (i in 0 .. (list.size-1)) {
+//            Log.e("check data", "${data.contains(list[i])}")
+            if (!data.contains(list[i]) && (data.size <= 100)) {
+//                Log.e("check data", "add data")
+                data.add(list[i])
+            }
+        }
+//        Log.e("check data", "data size ${data.size}")
         populateData()
     }
 

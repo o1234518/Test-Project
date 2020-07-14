@@ -1,5 +1,6 @@
 package com.example.githubuserlist.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +17,10 @@ import java.util.*
 
 class DataAdapter :
     RecyclerView.Adapter<DataAdapter.DataViewHolder?>() {
+
     private val data: MutableList<User>
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): DataViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         val itemView: View = LayoutInflater.from(parent.context).inflate(
             R.layout.user_list_item,
             FrameLayout(parent.context), false
@@ -47,17 +47,21 @@ class DataAdapter :
         holder.unbind()
     }
 
-    fun updateData(@Nullable data: List<User>) {
+    fun updateData(@Nullable data: List<User>?) {
         if (data == null || data.isEmpty()) {
             this.data.clear()
         } else {
-            this.data.addAll(data)
+            for (i in 0 .. (data.size-1)) {
+                if (!this.data.contains(data[i]) && (this.data.size <= 100)) {
+                    this.data.add(data[i])
+                }
+            }
         }
         notifyDataSetChanged()
     }
 
     /* package */
-    companion object class DataViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
+    inner class DataViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         /* package */
         var binding: UserListItemBinding? = null
 

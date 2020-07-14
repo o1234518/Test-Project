@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubuserlist.databinding.ActivityMainBinding
 import com.example.githubuserlist.databinding.AppDataBindingComponent
+import com.example.githubuserlist.databinding.UserListItemBinding
+import com.example.githubuserlist.viewModel.DataItemViewModel
 import com.example.githubuserlist.viewModel.DataViewModel
 import com.example.githubuserlist.webApiService.request.GetUserLsitRequest
 import com.example.githubuserlist.webApiService.webClient.GetUserListWebClient
@@ -38,6 +40,13 @@ class MainActivity : AppCompatActivity() {
                     )
             getUserListClient.request()
         })
+
+        val getUserListClient = GetUserListWebClient(
+            GetUserLsitRequest(0),
+            null,
+            dataViewModel
+        )
+        getUserListClient.request()
 
 //        val getUserListClient = GetUserListWebClient(
 //            GetUserLsitRequest(0),

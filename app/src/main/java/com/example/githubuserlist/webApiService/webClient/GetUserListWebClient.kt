@@ -38,7 +38,7 @@ class GetUserListWebClient(val request: GetUserLsitRequest, val handleKey: Strin
                     }
 
                     Log.e("test api2", "${user_list.size}")
-                    val response = GetUserListResponse(user_list)
+//                    val response = GetUserListResponse(user_list)
                     viewModel.setUp(user_list)
                 }
             }

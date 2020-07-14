@@ -1,10 +1,16 @@
 package com.example.githubuserlist.viewModel
 
+import android.R
 import android.text.TextUtils
 import android.util.Log
+import android.widget.ImageView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.githubuserlist.model.User
+
 
 class DataItemViewModel(dataModel: User) : BaseObservable() {
     private val dataModel: User
